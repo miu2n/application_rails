@@ -74,15 +74,6 @@ if node['application_rails']['rails_env'] == 'production'
     group node['application_rails']['group']
     environment({ 'RAILS_ENV' => node['application_rails']['rails_env'] })
   end
-
-  # Clear cache
-  execute 'rake cache:clear' do
-    command 'bundle exec rake cache:clear'
-    cwd root_path
-    user node['application_rails']['user']
-    group node['application_rails']['group']
-    environment({ 'RAILS_ENV' => node['application_rails']['rails_env'] })
-  end
 end
 
 # Create init
