@@ -25,6 +25,14 @@ else
   config_path = File.join(node['application_rails']['install_location'], 'config')
 end
 
+directory config_path do
+  owner node['application_rails']['user']
+  group node['application_rails']['group']
+  mode 0755
+  recursive true
+  not_if { File.exists?(path) }
+end
+
 template File.join(config_path, 'database.yml') do
   source 'database.yml.erb'
   user node['application_rails']['user']
