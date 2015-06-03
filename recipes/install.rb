@@ -15,6 +15,9 @@ node['application_rails']['capistrano_shared_folders'].each do |folder|
   end
 end if node['application_rails']['install_capistrano']
 
+# Create init
+
+
 # Create database config
 if node['application_rails']['install_capistrano'] && node['application_rails']['capistrano_shared_database']
   config_path = File.join(node['application_rails']['install_location'], 'shared', 'config')
@@ -76,4 +79,4 @@ if node['application_rails']['rails_env'] == 'production'
   end
 end
 
-# Create init
+# Start application
