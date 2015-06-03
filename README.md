@@ -1,17 +1,15 @@
 Application Rails Cookbook
 ===================
-TODO: Enter the cookbook description here.
 
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+This cookbook is used to deploy rails applications and can build the structure for initial git deployments as well as Capistrano deployments.
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
 
-e.g.
-#### packages
-- `toaster` - application_rails needs toaster to brown your bagel.
+#### Tested Operating Systems
+
+- Ubuntu 12.04 LTS
+- Ubuntu 14.04 LTS
 
 Attributes
 ----------
@@ -54,8 +52,7 @@ Usage
 #### application_rails::default
 TODO: Write usage instructions for each cookbook.
 
-e.g.
-Just include `application_rails` in your node's `run_list`:
+Just include `application_rails` in your node's `run_list` and override any of the attributes that you need to change in your Chef JSON:
 
 ```json
 {
@@ -68,4 +65,4 @@ Just include `application_rails` in your node's `run_list`:
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+Authors: Nikko Miu (miu2n@nikkomiu.com)
