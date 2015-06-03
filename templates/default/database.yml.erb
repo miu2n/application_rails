@@ -1,0 +1,9 @@
+<%= node['application_rails']['rails_env'] %>:
+  adapter: <%= node['application_rails']['database_type'] %>
+  encoding: unicode
+  database: <%= node['application_rails']['database_database'] %>
+  pool: 10
+  username: "<%= node['application_rails']['database_username'] %>"
+  password: "<%= node['application_rails']['database_password'] %>"
+  host: <%= node['application_rails']['database_hostname'] %>
+  port: <%= node['application_rails']['database_port'] %>

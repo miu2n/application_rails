@@ -1,0 +1,34 @@
+upstream <%= node['application_rails']['upstream_server_name'] %> {
+  server unix:///tmp/<%= node['application_rails']['app_name'] %>.sock fail_timeout=0;
+}
+
+server {
+  listen 80;
+  server_name <%= node['application_rails']['server_name'] %>;
+  root <%= @root_path %>;
+
+  location / {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $host;
+    proxy_redirect off;
+    proxy_pass http://<%= node['application_rails']['upstream_server_name'] %>;
+  }
+
+  location ~* ^/assets/ {
+    # Per RFC2616 - 1 year maximum expiry
+    expires 1y;
+    add_header Cache-Control public;
+
+    # Some browsers still send conditional-GET requests if there's a
+    # Last-Modified header or an ETag header even if they haven't
+    # reached the expiry date sent in the Expires header.
+    add_header Last-Modified "";
+    add_header ETag "";
+    break;
+  }
+
+  error_page 500 502 503 504 /500.html;
+  location = /500.html {
+    root <%= @root_path %>;
+  }
+}

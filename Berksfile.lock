@@ -1,0 +1,36 @@
+DEPENDENCIES
+  application_rails
+    path: .
+    metadata: true
+  apt
+  git
+  magic_shell
+    git: https://github.com/customink-webops/magic_shell.git
+    revision: 447b4b67420d3a7a749d2dd3b13a7f9aceb54c36
+    ref: 447b4b6
+  ruby_build (~> 0.8)
+  yum-epel
+
+GRAPH
+  application_rails (0.1.0)
+    apt (>= 0.0.0)
+    git (>= 0.0.0)
+    magic_shell (>= 0.0.0)
+    ruby_build (>= 0.0.0)
+    yum-epel (>= 0.0.0)
+  apt (2.7.0)
+  build-essential (2.2.3)
+  chef_handler (1.1.9)
+  dmg (2.2.2)
+  git (4.2.2)
+    build-essential (>= 0.0.0)
+    dmg (>= 0.0.0)
+    windows (>= 0.0.0)
+    yum-epel (>= 0.0.0)
+  magic_shell (0.3.2)
+  ruby_build (0.8.0)
+  windows (1.37.0)
+    chef_handler (>= 0.0.0)
+  yum (3.6.0)
+  yum-epel (0.6.0)
+    yum (~> 3.0)
