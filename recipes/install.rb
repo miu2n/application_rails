@@ -41,7 +41,7 @@ end
 
 # Create secrets config
 template File.join(config_path, 'secrets.yml') do
-  source 'database.yml.erb'
+  source 'secrets.yml.erb'
   user node['application_rails']['user']
   group node['application_rails']['group']
 end
