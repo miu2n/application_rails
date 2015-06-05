@@ -36,25 +36,25 @@ default['application_rails']['user_home'] = '/home/deploy'
 default['application_rails']['user_shell'] = '/bin/bash'
 
 # Rails Application
-default['application_rails']['install_location'] = '/home/deploy/note_house/' # Use the base application directory for capistrano deployments
+default['application_rails']['install_location'] = File.join(node['application_rails']['user_home'], node['application_rails']['app_name']) # Use the base application directory for capistrano deployments
 default['application_rails']['rails_env'] = 'production' # Rails ENV
-default['application_rails']['rails_secret_key_base']
+default['application_rails']['rails_secret_key_base'] = nil
 
 default['application_rails']['install_capistrano'] = true # Install for capistrano deployments
 default['application_rails']['capistrano_shared_folders'] = %w{}
 default['application_rails']['capistrano_shared_database'] = true # Is the database folder in a shared location
 
 # Git
-default['application_rails']['git_integration'] = true
-default['application_rails']['git_deploy_key'] = '' # Provide a deployment key for private repositories
-default['application_rails']['git_repository'] = 'git@github.com:miu2n/note-house.git'
+default['application_rails']['git_integration'] = false
+default['application_rails']['git_deploy_key'] = nil # Provide a deployment key for private repositories
+default['application_rails']['git_repository'] = nil
 default['application_rails']['git_revision'] = 'HEAD'
 
 # Database
-default['application_rails']['database_install'] = true
+default['application_rails']['database_install'] = false
 default['application_rails']['database_type'] = 'postgres' # Allowed: postgres
-default['application_rails']['database_hostname'] = ''
-default['application_rails']['database_username'] = ''
-default['application_rails']['database_password'] = ''
-default['application_rails']['database_database'] = ''
-default['application_rails']['database_port'] = ''
+default['application_rails']['database_hostname'] = 'localhost'
+default['application_rails']['database_username'] = 'root'
+default['application_rails']['database_password'] = 'change_me123'
+default['application_rails']['database_database'] = 'app'
+default['application_rails']['database_port'] = '5432'
