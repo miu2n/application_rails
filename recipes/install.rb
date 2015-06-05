@@ -37,6 +37,7 @@ template File.join(config_path, 'database.yml') do
   source 'database.yml.erb'
   user node['application_rails']['user']
   group node['application_rails']['group']
+  mode 0700 # Set the secrets file to only be usable for the user
 end
 
 # Create secrets config
@@ -44,6 +45,7 @@ template File.join(config_path, 'secrets.yml') do
   source 'secrets.yml.erb'
   user node['application_rails']['user']
   group node['application_rails']['group']
+  mode 0700 # Set the secrets file to only be usable for the user
 end
 
 root_path = node['application_rails']['install_location']
