@@ -21,7 +21,7 @@ default['application_rails']['server_name'] = '_'
 
 # NGINX Specific
 default['application_rails']['web_install'] = true
-default['application_rails']['upstream_server_name'] = 'app'
+default['application_rails']['upstream_server_name'] = node['application_rails']['app_name']
 
 # Ruby
 default['application_rails']['ruby_install'] = true
