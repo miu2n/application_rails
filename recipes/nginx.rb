@@ -9,18 +9,8 @@ package 'nginx' do
   action :install
 end
 
-path = is_rhel ? "/etc/nginx/conf.d/#{node['application_rails']['app_name']}.conf" : "/etc/nginx/sites-available/#{node['application_rails']['app_name']}"
-
 root_path = node['application_rails']['install_location']
 root_path = File.join(node['application_rails']['install_location'], 'current') if node['application_rails']['install_capistrano']
-
-template path do
-  source 'nginx.erb'
-  mode 0644
-  variables({
-    root_path: root_path
-  })
-end
 
 if is_rhel
   %w( default.conf ssl.conf virtual.conf ).each do |conf|
@@ -36,6 +26,16 @@ else
   file '/etc/nginx/sites-enabled/default' do
     action :delete
   end
+end
+
+path = is_rhel ? "/etc/nginx/conf.d/#{node['application_rails']['app_name']}.conf" : "/etc/nginx/sites-available/#{node['application_rails']['app_name']}"
+
+template path do
+  source 'nginx.erb'
+  mode 0644
+  variables({
+    root_path: root_path
+  })
 end
 
 service 'nginx' do
