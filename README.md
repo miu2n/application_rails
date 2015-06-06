@@ -44,7 +44,7 @@ Attributes
 | `['application_rails']['git_repository']`             | String  | URL of the repository for Git (only SSH tested)       | `nil`                                |
 | `['application_rails']['git_revision']`               | String  | Revision of the code to use for the initial set up    | `HEAD`                               |
 | `['application_rails']['database_install']`           | Boolean | Install the database on the server?                   | `false`                              |
-| `['application_rails']['database_type']`              | String  | The type of the database to use options: (postgres)   | `postgres`                           |
+| `['application_rails']['database_type']`              | String  | The type of the database to use options: (postgresql)   | `postgresql`                           |
 | `['application_rails']['database_hostname']`          | String  | Hostname of the database to add in the app DB config  | `localhost`                          |
 | `['application_rails']['database_username']`          | String  | Username of the database to add in the app DB config  | `root`                               |
 | `['application_rails']['database_password']`          | String  | Password of the database to add in the app DB config  | `change_me123`                       |

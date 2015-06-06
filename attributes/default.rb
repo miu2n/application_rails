@@ -52,7 +52,7 @@ default['application_rails']['git_revision'] = 'HEAD'
 
 # Database
 default['application_rails']['database_install'] = false
-default['application_rails']['database_type'] = 'postgres' # Allowed: postgres
+default['application_rails']['database_type'] = 'postgresql' # Allowed: postgresql
 default['application_rails']['database_hostname'] = 'localhost'
 default['application_rails']['database_username'] = 'root'
 default['application_rails']['database_password'] = 'change_me123'

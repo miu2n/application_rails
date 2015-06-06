@@ -49,8 +49,18 @@ end
 root_path = node['application_rails']['install_location']
 root_path = File.join(root_path, 'current') if node['application_rails']['install_capistrano']
 
+%w{database.yml secrets.yml}.each do |f|
+  file File.join(root_path, 'config', f) do
+    action :delete
+  end
+
+  link File.join(root_path, 'config', f) do
+    to File.join(config_path, f)
+  end
+end if node['application_rails']['install_capistrano']
+
 # Create directories for PID and SOCK files
-%w{'tmp/pids', 'tmp/sockets'}.each do |dir|
+%w{tmp/pids tmp/sockets}.each do |dir|
   directory File.join(root_path, dir) do
     owner node['application_rails']['user']
     group node['application_rails']['group']
@@ -108,4 +118,5 @@ end
 execute 'start app' do
   command "start #{node['application_rails']['app_name']}"
   cwd root_path
+  not_if "restart #{node['application_rails']['app_name']}"
 end
