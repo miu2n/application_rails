@@ -11,8 +11,8 @@ end
 
 path = is_rhel ? "/etc/nginx/conf.d/#{node['application_rails']['app_name']}.conf" : "/etc/nginx/sites-available/#{node['application_rails']['app_name']}"
 
-root_path = File.join(node['application_rails']['install_location'], 'public')
-root_path = File.join(node['application_rails']['install_location'], 'current', 'public') if node['application_rails']['install_capistrano']
+root_path = node['application_rails']['install_location']
+root_path = File.join(node['application_rails']['install_location'], 'current') if node['application_rails']['install_capistrano']
 
 template path do
   source 'nginx.erb'
