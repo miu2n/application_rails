@@ -11,6 +11,10 @@ Requirements
 - Ubuntu 12.04 LTS
 - Ubuntu 14.04 LTS
 
+#### Rails Gems
+
+- `foreman`: Foreman is required to create init scripts
+
 Attributes
 ----------
 

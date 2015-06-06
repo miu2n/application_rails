@@ -15,9 +15,6 @@ node['application_rails']['capistrano_shared_folders'].each do |folder|
   end
 end if node['application_rails']['install_capistrano']
 
-# Create init
-
-
 # Create database config
 if node['application_rails']['install_capistrano'] && node['application_rails']['capistrano_shared_database']
   config_path = File.join(node['application_rails']['install_location'], 'shared', 'config')
@@ -50,6 +47,14 @@ end
 
 root_path = node['application_rails']['install_location']
 root_path = File.join(root_path, 'current') if node['application_rails']['install_capistrano']
+
+# Create init
+execute 'foreman export' do
+  command 'foreman export'
+  cwd root_path
+  user node['application_rails']['user']
+  group node['application_rails']['group']
+end
 
 # Load DB Schema
 execute 'rake db:schema:load' do
@@ -90,3 +95,9 @@ if node['application_rails']['rails_env'] == 'production'
 end
 
 # Start application
+execute 'foreman start' do
+  command 'foreman start'
+  cwd root_path
+  user node['application_rails']['user']
+  group node['application_rails']['group']
+end
