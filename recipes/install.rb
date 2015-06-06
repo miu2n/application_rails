@@ -6,8 +6,20 @@
 root_path = node['application_rails']['install_location']
 root_path = File.join(root_path, 'current') if node['application_rails']['install_capistrano']
 
+env_vars = {
+  DB_TYPE: node['application_rails']['database_type'],
+  DB_HOSTNAME: node['application_rails']['database_hostname'],
+  DB_HOSTNAME: node['application_rails']['database_username'],
+  DB_HOSTNAME: node['application_rails']['database_password'],
+  DB_HOSTNAME: node['application_rails']['database_database'],
+  DB_HOSTNAME: node['application_rails']['database_port'],
+  RAILS_ENV: node['application_rails']['rails_env'],
+  RACK_ENV: node['application_rails']['rails_env'],
+  SECRET_KEY_BASE: node['application_rails']['rails_secret_key_base']
+}
+
 # Create directories for PID and SOCK files
-%w{tmp/pids tmp/sockets}.each do |dir|
+%w{tmp/pids tmp/sockets tmp/cache}.each do |dir|
   directory File.join(root_path, dir) do
     owner node['application_rails']['user']
     group node['application_rails']['group']
@@ -17,11 +29,23 @@ root_path = File.join(root_path, 'current') if node['application_rails']['instal
   end
 end
 
+template File.join(root_path, '.env') do
+  source 'dotenv.erb'
+  user node['application_rails']['user']
+  group node['application_rails']['group']
+  mode 0700
+  action :create
+  variables({ vars: env_vars })
+end
+
 # Create init
 execute 'foreman export' do
   command "foreman export upstart /etc/init -a #{node['application_rails']['app_name']} -u #{node['application_rails']['user']}"
   cwd root_path
 end
+
+# Convert the symbols to strings in ENV
+lcl_env = env_vars.inject({}){|m,(k,v)| m[k.to_s] = v; m }
 
 # Load DB Schema
 execute 'rake db:schema:load' do
@@ -29,7 +53,7 @@ execute 'rake db:schema:load' do
   cwd root_path
   user node['application_rails']['user']
   group node['application_rails']['group']
-  environment({ 'RAILS_ENV' => node['application_rails']['rails_env'] })
+  environment(lcl_env)
 end
 
 # Migrate DB
@@ -38,7 +62,7 @@ execute 'rake db:migrate' do
   cwd root_path
   user node['application_rails']['user']
   group node['application_rails']['group']
-  environment({ 'RAILS_ENV' => node['application_rails']['rails_env'] })
+  environment(lcl_env)
 end
 
 if node['application_rails']['rails_env'] == 'production'
@@ -48,7 +72,7 @@ if node['application_rails']['rails_env'] == 'production'
     cwd root_path
     user node['application_rails']['user']
     group node['application_rails']['group']
-    environment({ 'RAILS_ENV' => node['application_rails']['rails_env'] })
+    environment(lcl_env)
   end
 
   # Precompile assets
@@ -57,7 +81,7 @@ if node['application_rails']['rails_env'] == 'production'
     cwd root_path
     user node['application_rails']['user']
     group node['application_rails']['group']
-    environment({ 'RAILS_ENV' => node['application_rails']['rails_env'] })
+    environment(lcl_env)
   end
 end
 

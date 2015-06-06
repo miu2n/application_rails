@@ -39,6 +39,7 @@ default['application_rails']['user_shell'] = '/bin/bash'
 default['application_rails']['install_location'] = File.join(node['application_rails']['user_home'], node['application_rails']['app_name']) # Use the base application directory for capistrano deployments
 default['application_rails']['rails_env'] = 'production' # Rails ENV
 default['application_rails']['rails_secret_key_base'] = nil
+default['application_rails']['rails_env_variables'] = {} # Hash for additional ENV variables
 
 default['application_rails']['install_capistrano'] = true # Install for capistrano deployments
 
