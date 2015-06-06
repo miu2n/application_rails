@@ -43,5 +43,6 @@ service 'nginx' do
 end
 
 service 'nginx' do
-  action :restart
+  action :nothing
+  subscribes :restart, "template[#{path}]", :immediately
 end
