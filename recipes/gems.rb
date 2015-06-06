@@ -26,6 +26,8 @@ end
 # Update the system gems
 execute 'Update rubygems' do
   command 'gem update --system'
+  action :nothing
+  subscribes :run, 'gem_package[bundler]', :immediately
 end
 
 # Install gems without ri and rdoc
@@ -53,4 +55,5 @@ execute 'bundle install' do
   command "bundle install --without #{bundle_without.join(" ")}"
   cwd root_path
   action :run
+  not_if 'bundle check'
 end
