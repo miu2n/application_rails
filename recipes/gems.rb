@@ -46,11 +46,11 @@ else
   bundle_without << 'production'
 end
 
-ssl_certs = File.exists?('/opt/local/etc/certs/cacert.pem') ? 'SSL_CERT_FILE=/opt/local/etc/certs/cacert.pem' : ''
+#ssl_certs = lazy { File.exists?('/opt/local/etc/certs/cacert.pem') } ? 'SSL_CERT_FILE=/opt/local/etc/certs/cacert.pem' : ''
 
 # Bundle
 execute 'bundle install' do
-  command "#{ssl_certs} bundle install --without #{bundle_without.join(" ")}"
+  command "bundle install --without #{bundle_without.join(" ")}"
   cwd root_path
   action :run
 end
