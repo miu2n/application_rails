@@ -41,8 +41,6 @@ default['application_rails']['rails_env'] = 'production' # Rails ENV
 default['application_rails']['rails_secret_key_base'] = nil
 
 default['application_rails']['install_capistrano'] = true # Install for capistrano deployments
-default['application_rails']['capistrano_shared_folders'] = %w{}
-default['application_rails']['capistrano_shared_database'] = true # Is the database folder in a shared location
 
 # Git
 default['application_rails']['git_integration'] = false
