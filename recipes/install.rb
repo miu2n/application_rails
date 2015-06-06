@@ -9,10 +9,10 @@ root_path = File.join(root_path, 'current') if node['application_rails']['instal
 env_vars = {
   DB_TYPE: node['application_rails']['database_type'],
   DB_HOSTNAME: node['application_rails']['database_hostname'],
-  DB_HOSTNAME: node['application_rails']['database_username'],
-  DB_HOSTNAME: node['application_rails']['database_password'],
-  DB_HOSTNAME: node['application_rails']['database_database'],
-  DB_HOSTNAME: node['application_rails']['database_port'],
+  DB_USERNAME: node['application_rails']['database_username'],
+  DB_PASSWORD: node['application_rails']['database_password'],
+  DB_DATABASE: node['application_rails']['database_database'],
+  DB_PORT: node['application_rails']['database_port'],
   RAILS_ENV: node['application_rails']['rails_env'],
   RACK_ENV: node['application_rails']['rails_env'],
   SECRET_KEY_BASE: node['application_rails']['rails_secret_key_base']
