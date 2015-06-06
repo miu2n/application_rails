@@ -24,7 +24,7 @@ Attributes
 | `['application_rails']['app_name']`                   | String  | The name for the application                          | `app`                                |
 | `['application_rails']['server_name']`                | String  | The name for the web front-end                        | `_`                                  |
 | `['application_rails']['web_install']`                | Boolean | Whether to install NGINX or not on the server         | `true`                               |
-| `['application_rails']['upstream_server_name']`       | String  | Name of the socket to look for in `/tmp`              | Calculated(`app_name`)               |
+| `['application_rails']['upstream_server_name']`       | String  | Name of the socket to look for in `/run`              | Calculated(`app_name`)               |
 | `['application_rails']['ruby_install']`               | Boolean | Whether to install Ruby or not on the server          | `true`                               |
 | `['application_rails']['ruby_version']`               | String  | The version number of ruby to install on the server   | `2.1.2`                              |
 | `['application_rails']['user']`                       | String  | User to use for the application deployments           | `deploy`                             |

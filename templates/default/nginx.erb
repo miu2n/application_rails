@@ -1,5 +1,5 @@
 upstream <%= node['application_rails']['upstream_server_name'] %> {
-  server unix:///tmp/<%= node['application_rails']['app_name'] %>.sock fail_timeout=0;
+  server unix:///run/<%= node['application_rails']['app_name'] %>.sock fail_timeout=0;
 }
 
 server {
