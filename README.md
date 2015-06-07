@@ -66,6 +66,12 @@ Just include `application_rails` in your node's `run_list` and override any of t
 }
 ```
 
-License and Authors
+The default recipe will run all of the correct recipes in the cookbook in the correct order.
+
+Authors
 -------------------
 Authors: Nikko Miu (miu2n@nikkomiu.com)
+
+License
+-------------------
+This cookbook is licensed under the [MIT License](LICENSE)
