@@ -14,6 +14,7 @@ Requirements
 #### Rails Gems
 
 - `foreman`: Foreman is required to create init scripts
+- `dotenv-rails`: **(Recommended)** This gem is recommended to better manage the ENV. Without it managing the environment variables will be more difficult.
 
 Attributes
 ----------
@@ -53,7 +54,6 @@ Attributes
 Usage
 -----
 #### application_rails::default
-TODO: Write usage instructions for each cookbook.
 
 Just include `application_rails` in your node's `run_list` and override any of the attributes that you need to change in your Chef JSON:
 
